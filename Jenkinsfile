@@ -3,9 +3,9 @@ node('master')
     tool name: 'java8', type: 'jdk'
     tool name: 'gradle3.3', type: 'gradle'
     def errorArray = []
-    def jdkHome = tool 'java8'
+    def env.jdkHome = tool 'java8'
     def grHome = tool 'gradle3.3'
-    def gradleHome = "${grHome}"+"/bin"
+    def env.gradleHome = "${grHome}"+"/bin"
 
     stage ('cleanup')
     {
@@ -39,7 +39,7 @@ node('master')
         try
         {
             sh '''
-            export PATH=$PATH:''' + echo "$gradleHome" + '''
+            export PATH=$PATH:${gradleHome}
             export JAVA_HOME=${JENKINS_HOME}/tools/hudson.model.JDK/java8/
             gradle build
             ''';
@@ -136,7 +136,6 @@ node('master')
         {
             sh '''
             export JAVA_HOME=${JENKINS_HOME}/tools/hudson.model.JDK/java8/
-            java -jar $(basename "$PWD").jar
             '''
         }
         catch (error)
