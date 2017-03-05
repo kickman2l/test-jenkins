@@ -3,6 +3,11 @@ node('master')
     tool name: 'java8', type: 'jdk'
     tool name: 'gradle3.3', type: 'gradle'
 
+    stage ('cleanup')
+    {
+        step([$class: 'WsCleanup'])
+    }
+    
     stage ('Preparation (Checking out).')
     {
         //git url:'https://github.com/MNT-Lab/mntlab-pipeline.git', branch:'pheraska'
@@ -61,6 +66,8 @@ node('master')
             tar -czf pipeline-${BRANCH_NAME}-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile $(basename "$PWD").jar
             ''';
     }
+    
+      
     
     /*
 
