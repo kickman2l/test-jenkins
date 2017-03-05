@@ -47,10 +47,12 @@ node('master')
         failFast: true|false
     }
     
+    stage ('Triggering job and fetching artefact after finishing.')
+    {
+        build job: 'kickman', parameters: [[$class: 'StringParameterValue', name: 'systemname', value: 'systemname']]
+    }
     
-    
-/*
-stage 'Triggering job and fetching artefact after finishing.'
+    /*
 
 stage 'Packaging and Publishing results.'
 
