@@ -67,14 +67,15 @@ node('master')
             ''';
             archiveArtifacts artifacts: 'pipeline-${BRANCH_NAME}-${BUILD_NUMBER}.tar.gz'
     }
-    
-      
-    
-    /*
 
-
-stage 'Asking for manual approval.'
-
+    stage ('Asking for manual approval.')
+    {
+        timeout(time:30, unit:'MINUTES') 
+        {
+            input message:'Approve Deployment?'
+        }
+    }
+/*
 stage 'Deployment.'
 
 stage 'Sending status.'
