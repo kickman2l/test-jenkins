@@ -78,14 +78,13 @@ node('master')
     
     stage ('Deployment.')
     {
-        when { currentBuild.result == 'SUCCESS' } 
-            step
-            {
-                sh '''
-                   export JAVA_HOME=${JENKINS_HOME}/tools/hudson.model.JDK/java8/
-                   java -jar $(basename "$PWD").jar
-                   '''
-            } 
+        if(currentBuild.result == 'SUCCESS')
+        {
+            sh '''
+               export JAVA_HOME=${JENKINS_HOME}/tools/hudson.model.JDK/java8/
+               java -jar $(basename "$PWD").jar
+               '''
+        }
     }
 /*
 stage 'Sending status.'
