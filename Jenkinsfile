@@ -141,9 +141,9 @@ node('master')
     
     stage ('Sending status.')
     {
-        if (errorArray.size() != "0")
+        def arrSize = errorArray.size();
+        if (arrSize != 0)
         {
-            echo errorArray.length
             echo "${errorArray}"
         }
         else
