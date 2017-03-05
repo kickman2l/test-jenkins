@@ -3,16 +3,11 @@ node('master')
     tool name: 'java8', type: 'jdk'
     tool name: 'gradle3.3', type: 'gradle'
     def errorArray = []
-    def env.jdkHome = tool 'java8'
-    def grHome = tool 'gradle3.3'
-    def env.gradleHome = "${grHome}"+"/bin"
 
     stage ('cleanup')
     {
         try
         {
-            echo "$jdkHome"
-            echo "$gradleHome"
             step([$class: 'WsCleanup'])
         }
         catch (error)
@@ -39,8 +34,8 @@ node('master')
         try
         {
             sh '''
-            export PATH=$PATH:${gradleHome}
-            export JAVA_HOME=${JENKINS_HOME}/tools/hudson.model.JDK/java8/
+                export PATH=$PATH:${JENKINS_HOME}/tools/hudson.plugins.gradle.GradleInstallation/gradle3.3/bin/
+                export JAVA_HOME=${JENKINS_HOME}/tools/hudson.model.JDK/java8/
             gradle build
             ''';
         }
