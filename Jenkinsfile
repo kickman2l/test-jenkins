@@ -142,7 +142,7 @@ node('master')
     
     stage ('Sending status.')
     {
-        if (${errorArray} !=  0)
+        if ("${errorArray}" != "0")
         {
             echo "${errorArray.size()}"
         }
@@ -150,7 +150,6 @@ node('master')
         {
             echo "cmon sookablya"
         }
-       
     }
 }
 
