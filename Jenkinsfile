@@ -56,12 +56,10 @@ node('master')
     stage ('Packaging and Publishing results.')
     {
         sh '''
-            echo ${WORKSPACE}
-            FN=$(basename "$PWD")
             export PATH=$PATH:${JENKINS_HOME}/tools/hudson.plugins.gradle.GradleInstallation/gradle3.3/bin/
             export JAVA_HOME=${JENKINS_HOME}/tools/hudson.model.JDK/java8/
             tar -zxvf pheraska_dsl_script.tar.gz jobs.groovy
-            tar -czf pipeline-${BRANCH_NAME}-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile build/libs/${FN}.jar
+            tar -czf pipeline-${BRANCH_NAME}-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile ${WORKSPACE}build/libs/$(basename "$PWD").jar
             ''';
     }
     
