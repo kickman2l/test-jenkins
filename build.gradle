@@ -21,7 +21,7 @@ jar {
 		   "Implementation-Title": "Gradle",
                    "Implementation-Version": "1.0")
     }
-    BaseName 'SuperStarTest'
+    baseName 'SuperStarTest'
 }
 task cucumber() {
     dependsOn assemble, compileTestJava
