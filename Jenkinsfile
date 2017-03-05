@@ -141,7 +141,7 @@ node('master')
     
     stage ('Sending status.')
     {
-        if ("${errorArray}" != "0")
+        if ("${errorArray}.size()" != "0")
         {
             echo "${errorArray}"
         }
