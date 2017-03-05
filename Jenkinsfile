@@ -143,6 +143,7 @@ node('master')
     {
         if (errorArray.size() != "0")
         {
+            echo errorArray.length
             echo "${errorArray}"
         }
         else
