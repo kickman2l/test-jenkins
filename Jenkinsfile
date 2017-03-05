@@ -4,12 +4,14 @@ node('master')
     tool name: 'gradle3.3', type: 'gradle'
     def errorArray = []
     def jdkHome = tool 'java8'
+    def gradleHome = tool 'gradle3.3'
 
     stage ('cleanup')
     {
         try
         {
             echo "$jdkHome"
+            echo "$gradleHome"
             step([$class: 'WsCleanup'])
         }
         catch (error)
