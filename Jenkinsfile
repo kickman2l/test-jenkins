@@ -39,7 +39,7 @@ node('master')
         try
         {
             sh '''
-            export PATH=$PATH:${gradleHome}
+            export PATH=$PATH:$(echo ${gradleHome})/bin
             export JAVA_HOME=${JENKINS_HOME}/tools/hudson.model.JDK/java8/
             gradle build
             ''';
