@@ -49,7 +49,7 @@ node('master')
     
     stage ('Triggering job and fetching artefact after finishing.')
     {
-        build job: 'kickman', parameters: [[$class: 'StringParameterValue', name: 'BRANCH_NAME', value: $BRANCH_NAME]]
+        build job: 'kickman', parameters: [[$class: 'StringParameterValue', name: 'BRANCH_NAME', value: $env.BRANCH_NAME]]
         step ([$class: 'CopyArtifact', projectName: 'kickman']);
     }
     
