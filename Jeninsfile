@@ -1,4 +1,3 @@
-
 node('master')
 {
     tool name: 'java8', type: 'jdk'
@@ -46,6 +45,9 @@ node('master')
         }
         failFast: true|false
     }
+    
+    
+    
 /*
 stage 'Triggering job and fetching artefact after finishing.'
 
