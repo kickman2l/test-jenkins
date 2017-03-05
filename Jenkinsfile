@@ -4,7 +4,8 @@ node('master')
     tool name: 'gradle3.3', type: 'gradle'
     def errorArray = []
     def jdkHome = tool 'java8'
-    def gradleHome = tool 'gradle3.3'
+    def grHome = tool 'gradle3.3'
+    def gradleHome = "${grHome}/bin/"
 
     stage ('cleanup')
     {
