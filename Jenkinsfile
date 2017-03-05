@@ -79,7 +79,8 @@ node('master')
     stage ('Deployment.')
     {
         when { currentBuild.result == 'SUCCESS' } 
-            steps {
+            step
+            {
                 sh '''
                    export JAVA_HOME=${JENKINS_HOME}/tools/hudson.model.JDK/java8/
                    java -jar $(basename "$PWD").jar
