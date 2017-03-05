@@ -86,7 +86,7 @@ node('master')
     
     stage ('Sending status.')
     {
-        echo "${currentBuild}"
+        echo "${currentBuild.result}"
        if(currentBuild.result == 'SUCCESS')
        {
            echo "Job ${JOB_NAME} successfully done!"
