@@ -2,13 +2,13 @@ node('master')
 {
     tool name: 'java8', type: 'jdk'
     tool name: 'gradle3.3', type: 'gradle'
-    def errorArray = ["123\n","1234\n"]
+    def errorArray = []
 
     stage ('cleanup')
     {
         try
         {
-            step([$class: 'Ws1Cleanup'])
+            step([$class: 'WsCleanup'])
         }
         catch (error)
         {
@@ -148,7 +148,7 @@ node('master')
         }
         else
         {
-            echo "cmon sookablya"
+            echo "SUCCESS: No errors found!"
         }
     }
 }
