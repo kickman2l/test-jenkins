@@ -9,7 +9,7 @@ node('master')
     {
         try
         {
-            echo "$jdfHome"
+            echo "$jdkHome"
             step([$class: 'WsCleanup'])
         }
         catch (error)
