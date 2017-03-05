@@ -5,7 +5,7 @@ node('master')
     def errorArray = []
     def jdkHome = tool 'java8'
     def grHome = tool 'gradle3.3'
-    def gradleHome = "${grHome}/bin/"
+    def gradleHome = "${grHome}"+"/bin"
 
     stage ('cleanup')
     {
