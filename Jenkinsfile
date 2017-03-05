@@ -5,7 +5,14 @@ node('master')
 
     stage ('cleanup')
     {
-        step([$class: 'WsCleanup'])
+        try
+        {
+            step([$class: 'Ws1Cleanup'])
+        }
+        catch (error)
+        {
+            echo "${error}"
+        }        
     }
     
     stage ('Preparation (Checking out).')
@@ -86,7 +93,7 @@ node('master')
     
     stage ('Sending status.')
     {
-        echo "${currentBuild.result}"
+       
        if(currentBuild.result == 'SUCCESS')
        {
            echo "Job ${JOB_NAME} successfully done!"
