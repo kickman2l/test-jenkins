@@ -86,6 +86,7 @@ node('master')
     
     stage ('Sending status.')
     {
+        echo "$env"
        if(currentBuild.result == 'SUCCESS')
        {
            echo "Job ${JOB_NAME} successfully done!"
