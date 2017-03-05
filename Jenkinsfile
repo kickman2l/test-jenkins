@@ -2,6 +2,7 @@ node('master')
 {
     tool name: 'java8', type: 'jdk'
     tool name: 'gradle3.3', type: 'gradle'
+    def errorArray = []
 
     stage ('cleanup')
     {
@@ -11,8 +12,7 @@ node('master')
         }
         catch (error)
         {
-            echo "${error}"
-            throw error;
+            errorArray.push(error)
         }        
     }
     
@@ -94,7 +94,7 @@ node('master')
     
     stage ('Sending status.')
     {
-       
+        echo ${errorArray}
        if(currentBuild.result == 'SUCCESS')
        {
            echo "Job ${JOB_NAME} successfully done!"
