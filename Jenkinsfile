@@ -89,14 +89,14 @@ node('master')
     
     stage ('Sending status.')
     {
-        publishHTML (target: [
-                        allowMissing: false,
-                        alwaysLinkToLastBuild: false,
-                        keepAll: true,
-                        reportDir: 'coverage',
-                        reportFiles: 'index.html',
-                        reportName: "RCov Report"
-                    ])
+       if(currentBuild.result == 'SUCCESS')
+       {
+           echo "Job ${JOB_NAME} successfully done!"
+       }
+       else
+       {
+           echo "Something goes wrong job ${JOB_NAME} finished with ${currentBuild.result}"
+       }
     }
 }
 
