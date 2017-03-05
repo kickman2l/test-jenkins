@@ -2,7 +2,7 @@ node('master')
 {
     tool name: 'java8', type: 'jdk'
     tool name: 'gradle3.3', type: 'gradle'
-    def errorArray = []
+    def errorArray = ["123","1234"]
 
     stage ('cleanup')
     {
@@ -144,7 +144,10 @@ node('master')
     {
         if ("${errorArray}" != "0")
         {
-            echo "${errorArray.size()}"
+            errorArray.each()
+            {
+                echo "${it}\n"
+            }
         }
         else
         {
