@@ -1,11 +1,3 @@
-def addPaht()
-{
-   sh '''
-      export PATH=$PATH:${JENKINS_HOME}/tools/hudson.plugins.gradle.GradleInstallation/gradle3.3/bin/
-      export JAVA_HOME=${JENKINS_HOME}/tools/hudson.model.JDK/java8/
-      ''';
-}
-
 node('master')
 {
     tool name: 'java8', type: 'jdk'
@@ -19,13 +11,11 @@ node('master')
 
     stage ('Building code.')
     {
-        addPaht();
         sh '''
+        export PATH=$PATH:${JENKINS_HOME}/tools/hudson.plugins.gradle.GradleInstallation/gradle3.3/bin/
+        export JAVA_HOME=${JENKINS_HOME}/tools/hudson.model.JDK/java8/
         gradle build
         ''';
-        
-        //export PATH=$PATH:${JENKINS_HOME}/tools/hudson.plugins.gradle.GradleInstallation/gradle3.3/bin/
-        //export JAVA_HOME=${JENKINS_HOME}/tools/hudson.model.JDK/java8/
     }
 
     stage ('Testing.')
