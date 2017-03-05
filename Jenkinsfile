@@ -12,6 +12,7 @@ node('master')
         catch (error)
         {
             echo "${error}"
+            throw error;
         }        
     }
     
