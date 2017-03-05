@@ -94,7 +94,7 @@ node('master')
     
     stage ('Sending status.')
     {
-        echo ${errorArray}
+        echo "${errorArray}"
        if(currentBuild.result == 'SUCCESS')
        {
            echo "Job ${JOB_NAME} successfully done!"
