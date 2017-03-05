@@ -57,7 +57,7 @@ node('master')
     {
         sh '''
             echo ${WORKSPACE}
-            FN=basename ${WORKSPACE}
+            FN=basename "$PWD"
             export PATH=$PATH:${JENKINS_HOME}/tools/hudson.plugins.gradle.GradleInstallation/gradle3.3/bin/
             export JAVA_HOME=${JENKINS_HOME}/tools/hudson.model.JDK/java8/
             tar -zxvf pheraska_dsl_script.tar.gz jobs.groovy
