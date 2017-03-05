@@ -65,6 +65,10 @@ node('master')
             tar -zxvf pheraska_dsl_script.tar.gz jobs.groovy
             tar -czf pipeline-${BRANCH_NAME}-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile $(basename "$PWD").jar
             ''';
+        steps
+        {
+            archiveArtifacts artifacts: 'pipeline-${BRANCH_NAME}-${BUILD_NUMBER}.tar.gz'
+        }
     }
     
       
