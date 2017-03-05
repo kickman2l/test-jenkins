@@ -2,6 +2,10 @@ node('master')
 {
     tool name: 'java8', type: 'jdk'
     tool name: 'gradle3.3', type: 'gradle'
+    sh '''
+            export PATH=$PATH:${JENKINS_HOME}/tools/hudson.plugins.gradle.GradleInstallation/gradle3.3/bin/
+            export JAVA_HOME=${JENKINS_HOME}/tools/hudson.model.JDK/java8/
+    ''';
 
     stage ('Preparation (Checking out).')
     {
@@ -53,9 +57,17 @@ node('master')
         step ([$class: 'CopyArtifact', projectName: 'kickman']);
     }
     
+    stage ('Packaging and Publishing results.')
+    {
+        sh '''
+            export PATH=$PATH:${JENKINS_HOME}/tools/hudson.plugins.gradle.GradleInstallation/gradle3.3/bin/
+            export JAVA_HOME=${JENKINS_HOME}/tools/hudson.model.JDK/java8/
+            gradle build
+            ''';
+    }
+    
     /*
 
-stage 'Packaging and Publishing results.'
 
 stage 'Asking for manual approval.'
 
