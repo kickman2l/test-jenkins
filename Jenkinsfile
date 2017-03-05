@@ -144,7 +144,7 @@ node('master')
     {
         if ("${errorArray}" != "0")
         {
-            errorArray.each()
+            errorArray.each
             {
                 echo "${it}\n"
             }
