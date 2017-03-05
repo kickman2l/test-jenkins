@@ -70,14 +70,23 @@ node('master')
 
     stage ('Asking for manual approval.')
     {
-        timeout(time:30, unit:'MINUTES') 
+        timeout(time:3, unit:'MINUTES') 
         {
-            input message:'Approve Deployment?'
+            input message:'Approve deployment?'
         }
     }
+    
+    stage ('Deployment.')
+    {
+        when { currentBuild.result == 'SUCCESS' } 
+            steps {
+                sh '''
+                   export JAVA_HOME=${JENKINS_HOME}/tools/hudson.model.JDK/java8/
+                   java -jar $(basename "$PWD").jar
+                   '''
+            } 
+    }
 /*
-stage 'Deployment.'
-
 stage 'Sending status.'
 */
 }
