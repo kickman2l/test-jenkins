@@ -156,7 +156,12 @@ node('master')
             }
         }    
     }
-    catch (hudson.AbortException e) {
+    catch (org.jenkinsci.plugins.workflow.steps.FlowInterruptedException e)
+    {
+        echo "the job was cancelled or aborted"
+        sh "echo ${e}"
+    }
+    /*catch (hudson.AbortException e) {
         def m = e.message =~ /(?i)script returned exit code (\d+)/
         if (m) {
             def exitcode = m.group(1).toInteger()
@@ -167,5 +172,5 @@ node('master')
         }
         echo "${desc}: An error occured (${e}) marking build as failed."
         //currentBuild.result = "UNSTABLE"
-    } 
+    } */
 }
