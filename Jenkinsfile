@@ -1,7 +1,5 @@
 node('master')
 {
-    try
-    {
         tool name: 'java8', type: 'jdk'
         tool name: 'gradle3.3', type: 'gradle'
         def errorArray = []
@@ -163,28 +161,4 @@ node('master')
             }
         }    
     }
-    catch (Exception e) {
-        sh '''
-set -euf -o pipefail
-echo Process group id is $$
-
-OK=0
-trap 'if [[ "$OK" != "1" ]]; then echo "---"; echo TRAP terminating, kill all processes with parent $$; trap - SIGTERM && pkill -P $$; fi' SIGINT SIGTERM EXIT
-
-SECONDS=0
-echo "---"
-"$@" &
-PID=$!
-set +e
-wait $PID
-CODE=$?
-set -e
-OK=1
-
-echo "---"
-echo Process exited with code $CODE, took $SECONDS seconds
-
-exit $CODE
-            '''
-    } 
 }
