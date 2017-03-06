@@ -163,7 +163,7 @@ node('master')
                     }
                 }
         }
-        catch(AbortException e)
+        catch(AbortException)
         {
                 echo "ABORTED SOOKABLYA!!!"
                 ecjo "${e}"
