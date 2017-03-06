@@ -159,6 +159,8 @@ node('master')
     catch (Exception e)
     {
         echo "${e}"
+        echo "CMON DAVAI DAVAI"
+        throw e;
         //hudson.Abort
        /* def m = e.message =~ /(?i)script returned exit code (\d+)/
         if (m) {
