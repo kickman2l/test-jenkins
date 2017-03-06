@@ -163,13 +163,14 @@ node('master')
                     }
                 }
         }
-        catch(hudson.AbortException e)
+        catch(err)
         {
-                echo "ABORTED SOOKABLYA!!!"
-                def user = err.getCauses()[0].getUser()
-                echo "${user}"
-               // ecjo "${e}"
-                //def usr=hudson.tasks.Builder.User.getFullName();
-                echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+                def hi = err.getCauses()
+                    echo "Exception thrown:\n ${hi}"
+
+                    echo err.getLocalizedMessage()
+                    echo err.getCause()
+                    echo err.toString()
+                    echo err.getClass().getName()
         }
 }
