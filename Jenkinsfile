@@ -166,7 +166,7 @@ node('master')
         catch(AbortException)
         {
                 echo "ABORTED SOOKABLYA!!!"
-                def usr=hudson.tasks.Builder.getFullName();
+                def usr=hudson.tasks.Builder.User.getFullName();
                 echo "${usr}"
         }
 }
