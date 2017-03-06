@@ -1,3 +1,5 @@
+import hudson.model.User;
+
 node('master')
 {
         try
