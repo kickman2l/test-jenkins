@@ -163,7 +163,7 @@ node('master')
                     }
                 }
         }
-        catch(hudson.AbortException e)
+        catch(AbortException e)
         {
                 echo "ABORTED SOOKABLYA!!!"
                 ecjo "${e}"
