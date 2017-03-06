@@ -160,5 +160,4 @@ node('master')
                 echo "SUCCESS: No errors found!"
             }
         }    
-    }
 }
