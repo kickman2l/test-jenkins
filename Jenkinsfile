@@ -164,15 +164,27 @@ node('master')
         }    
     }
     catch (Exception e) {
-        def m = e.message =~ /(?i)script returned exit code (\d+)/
-        if (m) {
-            def exitcode = m.group(1).toInteger()
-            echo "###################################################"
-            if (exitcode >= 128) {
-                throw e;    //  killed because of abort, letting through
-            }
-        }
-        echo "An error occured (${e}) marking build as failed."
-        //currentBuild.result = "UNSTABLE"
+        sh '''
+set -euf -o pipefail
+echo Process group id is $$
+
+OK=0
+trap 'if [[ "$OK" != "1" ]]; then echo "---"; echo TRAP terminating, kill all processes with parent $$; trap - SIGTERM && pkill -P $$; fi' SIGINT SIGTERM EXIT
+
+SECONDS=0
+echo "---"
+"$@" &
+PID=$!
+set +e
+wait $PID
+CODE=$?
+set -e
+OK=1
+
+echo "---"
+echo Process exited with code $CODE, took $SECONDS seconds
+
+exit $CODE
+            '''
     } 
 }
