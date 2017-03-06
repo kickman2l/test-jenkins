@@ -14,7 +14,8 @@ node('master')
             }
             catch (error)
             {
-                errorArray.push("ERROR: Cant cleanup workspace!")
+                errorArray.push("ERROR: Cant cleanup workspace!");
+                throw error;
             }        
         }
 
@@ -28,6 +29,7 @@ node('master')
             catch (error)
             {
                 errorArray.push("ERROR: Cant clone from git!")
+                throw error;
             }
         }
 
@@ -44,6 +46,7 @@ node('master')
             catch (error)
             {
                 errorArray.push("ERROR: Cant build with gradle!")
+                throw error;
             }
         }
 
@@ -79,6 +82,7 @@ node('master')
             catch (error)
             {
                 errorArray.push("ERROR: Something goes wrong with tests!")
+                throw error;
             }
         }
 
@@ -91,8 +95,8 @@ node('master')
             }
             catch (error)
             {
-                echo "${error}"
                 errorArray.push("ERROR: Cant trigger other project!")
+                throw error;
             }
         }
 
@@ -110,6 +114,7 @@ node('master')
             catch (error)
             {
                 errorArray.push("ERROR: Cant create artifacts!")
+                throw error;
             }
         }
 
@@ -125,6 +130,7 @@ node('master')
             catch (error)
             {
                 errorArray.push("ERROR: Somet wrong with with approve!")
+                throw error;
             }
         }
 
@@ -139,6 +145,7 @@ node('master')
             catch (error)
             {
                 errorArray.push("ERROR: Somet wrong with deployent!")
+                throw error;
             }
         }
 
@@ -156,12 +163,7 @@ node('master')
             }
         }    
     }
-    catch (org.jenkinsci.plugins.workflow.steps.FlowInterruptedException e)
-    {
-        echo "the job was cancelled or aborted"
-        sh "echo ${e}"
-    }
-    /*catch (hudson.AbortException e) {
+    catch (Exception e) {
         def m = e.message =~ /(?i)script returned exit code (\d+)/
         if (m) {
             def exitcode = m.group(1).toInteger()
@@ -172,5 +174,5 @@ node('master')
         }
         echo "${desc}: An error occured (${e}) marking build as failed."
         //currentBuild.result = "UNSTABLE"
-    } */
+    } 
 }
