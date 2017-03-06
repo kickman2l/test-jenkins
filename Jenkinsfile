@@ -89,7 +89,7 @@ node('master')
         }
         catch (error)
         {
-            echo "${error}"
+            echo "$error"
             errorArray.push("ERROR: Cant trigger other project!")
         }
     }
