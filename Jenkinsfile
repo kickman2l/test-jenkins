@@ -156,16 +156,16 @@ node('master')
             }
         }    
     }
-    catch (hudson.AbortException e)
-    {
-        echo "================================================================"
+    catch (hudson.AbortException e) {
         def m = e.message =~ /(?i)script returned exit code (\d+)/
         if (m) {
             def exitcode = m.group(1).toInteger()
+            echo "###################################################"
             if (exitcode >= 128) {
                 throw e;    //  killed because of abort, letting through
             }
         }
-        echo "${desc}: An error occured (${e}) marking build as failed. qweqweqwedadasd"
-    }
+        echo "${desc}: An error occured (${e}) marking build as failed."
+        //currentBuild.result = "UNSTABLE"
+    } 
 }
