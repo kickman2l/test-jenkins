@@ -166,6 +166,8 @@ node('master')
         catch(hudson.AbortException e)
         {
                 echo "ABORTED SOOKABLYA!!!"
+                def user = err.getCauses()[0].getUser()
+                echo "${user}"
                // ecjo "${e}"
                 //def usr=hudson.tasks.Builder.User.getFullName();
                 echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
