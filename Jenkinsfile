@@ -1,10 +1,22 @@
 node('master')
 {
-    Thread.setDefaultExceptionHandler(new UncaughtExceptionHandler()
+    try
     {
-        public void unchaughtException(Thread t, Throwable e) {
-            System.out.println("Caught " + e);
-             tool name: 'java8', type: 'jdk'
+        sh "sleep 1000"    
+    }
+    catch (hudson.AbortException e) {
+        def m = e.message =~ /(?i)script returned exit code (\d+)/
+        if (m) {
+            def exitcode = m.group(1).toInteger()
+            if (exitcode >= 128) {
+                throw e;    //  killed because of abort, letting through
+            }
+        }
+        echo "${desc}: An error occured (${e}) marking build as failed."
+        currentBuild.result = "UNSTABLE"
+    }
+    
+    tool name: 'java8', type: 'jdk'
     tool name: 'gradle3.3', type: 'gradle'
     def errorArray = []
 
@@ -157,7 +169,4 @@ node('master')
             echo "SUCCESS: No errors found!"
         }
     }
-        } 
-    });
 }
-
