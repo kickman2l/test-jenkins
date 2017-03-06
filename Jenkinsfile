@@ -167,5 +167,7 @@ node('master')
         {
                 echo "ABORTED SOOKABLYA!!!"
                 echo "${ABORTED_BY}"
+                THIS_USER=”$(wget -nv –no-proxy “$BUILD_URL/api/xml”‘?xpath=//userId/text()’ -O -)”
+                             echo "${THIS_USER}"
         }
 }
