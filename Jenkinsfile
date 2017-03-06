@@ -172,7 +172,7 @@ node('master')
                 throw e;    //  killed because of abort, letting through
             }
         }
-        echo "${desc}: An error occured (${e}) marking build as failed."
+        echo "An error occured (${e}) marking build as failed."
         //currentBuild.result = "UNSTABLE"
     } 
 }
