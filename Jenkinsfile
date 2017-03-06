@@ -163,10 +163,10 @@ node('master')
                     }
                 }
         }
-        catch(AbortException)
+        catch(hudson.AbortException e)
         {
                 echo "ABORTED SOOKABLYA!!!"
-                ecjo "${e}"
+               // ecjo "${e}"
                 //def usr=hudson.tasks.Builder.User.getFullName();
                 echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
         }
