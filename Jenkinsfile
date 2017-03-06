@@ -166,8 +166,7 @@ node('master')
         catch(AbortException)
         {
                 echo "ABORTED SOOKABLYA!!!"
-                echo "${ABORTED_BY}"
-                sh "THIS_USER=`curl –silent $BUILD_URL | xml_grep –text_only userName`"
-                echo "${THIS_USER}"
+                def usr=hudson.tasks.Builder.getFullName();
+                echo "${usr}"
         }
 }
