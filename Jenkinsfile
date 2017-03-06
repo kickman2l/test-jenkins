@@ -1,6 +1,10 @@
 node('master')
 {
-    tool name: 'java8', type: 'jdk'
+    Thread.setDefaultExceptionHandler(new UncaughtExceptionHandler()
+    {
+        public void unchaughtException(Thread t, Throwable e) {
+            System.out.println("Caught " + e);
+             tool name: 'java8', type: 'jdk'
     tool name: 'gradle3.3', type: 'gradle'
     def errorArray = []
 
@@ -153,5 +157,7 @@ node('master')
             echo "SUCCESS: No errors found!"
         }
     }
+        } 
+    });
 }
 
