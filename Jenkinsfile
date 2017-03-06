@@ -166,6 +166,6 @@ node('master')
         catch(AbortException)
         {
                 echo "ABORTED SOOKABLYA!!!"
-                echo User.current()
+                echo "${ABORTED_BY}"
         }
 }
