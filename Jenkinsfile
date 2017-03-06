@@ -89,7 +89,7 @@ node('master')
         }
         catch (error)
         {
-            echo "$error"
+            echo "${error}"
             errorArray.push("ERROR: Cant trigger other project!")
         }
     }
@@ -145,6 +145,7 @@ node('master')
         def arrSize = errorArray.size();
         if (arrSize != 0)
         {
+            echo "${error}"
             echo "${errorArray}"
         }
         else
