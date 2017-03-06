@@ -8,7 +8,7 @@ node('master')
     {
         try
         {
-            step([$class: 'Ws1Cleanup'])
+            step([$class: 'WsCleanup'])
         }
         catch (error)
         {
